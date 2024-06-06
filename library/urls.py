@@ -4,6 +4,7 @@ from . import views
 app_name = 'library'
 urlpatterns = [
     path('',views.home, name = 'home'),
+    path('SignUpPage/', views.SignUpPage.as_view(), name = 'SignUp'),
     path('ListPage/', views.ListPage.as_view(), name = 'ListPage'),
     path('<int:pk>/', views.DetailView.as_view(), name = 'detail'),
     path('AddPage/', views.AddPage.as_view(), name = 'AddPage'),

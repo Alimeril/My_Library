@@ -5,11 +5,20 @@ from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 from .models import Book
+from django.contrib.auth.models import User
 from django.db.models import Q
 
 
 def home(request):
     return render(request, "library/index.html")
+
+class SignUpPage(CreateView):
+    model = User
+    fields = [
+        "username",
+        "email",
+        "password",
+    ]
 
 class ListPage(generic.ListView):
     template_name = "library/booklist.html"
