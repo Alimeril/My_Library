@@ -5,6 +5,7 @@ app_name = 'library'
 urlpatterns = [
     path('',views.home, name = 'home'),
     path('SignUpPage/', views.SignUpPage.as_view(), name = 'SignUp'),
+    path('SignUpPage/ConfirmUser', views.user_confirm, name='UserCreateConfirm'),
     path('ListPage/', views.ListPage.as_view(), name = 'ListPage'),
     path('<int:pk>/', views.DetailView.as_view(), name = 'detail'),
     path('AddPage/', views.AddPage.as_view(), name = 'AddPage'),

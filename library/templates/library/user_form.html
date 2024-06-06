@@ -11,7 +11,7 @@ Add Books
         {% csrf_token %}
         <div>
             {{form.as_p}}
-            <input class="btn btn-primary" type = "submit" value = "Save">
+            <input class="btn btn-primary" type = "submit" value = "Submit">
             <a class="btn btn-primary" href ="{% url 'library:home' %}" role="button">Cancel</a>
         </div>
     </form>
