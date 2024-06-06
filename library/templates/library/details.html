@@ -1,0 +1,25 @@
+{% extends "library/master.html" %}
+
+{% block title %}
+{{ object.title }}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid text-center p-5 text-bg-secondary">
+    <h1>{{object.title}}</h1>
+{% if book.author_name == null %}
+    <p>Author: {{object.author_surname}}</p>
+{% else %}
+    <p>Author: {{object.author_name}} {{book.author_surname}}</p>
+{% endif %}
+<p> Publisher: {{object.publisher}}</p>
+<p>Genre: {{ object.genre }}</p>
+{% if object.borrowed %}
+    <p>BORROWED</p>
+{% endif %}
+<p>Date Added: {{ object.created }}</p>
+<a class="btn btn-success" href = "{% url 'library:EditPage' object.id %}" role="button">Edit</a>
+<a class="btn btn-success" href = "{% url 'library:DeletePage' object.id %}" role="button">Delete</a>
+</div>
+
+{% endblock %}

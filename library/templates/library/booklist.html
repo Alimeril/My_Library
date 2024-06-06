@@ -1,0 +1,53 @@
+{% extends "library/master.html" %}
+
+{% block title %}
+Book List
+{% endblock %}
+
+{% block content %}
+<form class="pt-2" method = "GET" action = "{% url 'library:ListPage' %}">
+    <div class="container-fluid p-2 bg-primary">
+        <input type = "text" name="q" placeholder="Search" value="{{query}}">
+    </div>
+</form>
+<h1 class=".container-fluid text-center pt-5">Book List</h1>
+<ul>
+    {% for book in book_list %}
+        <div class="container pt-3 list-group text-center" >
+            <li class="list-group-item list-group-item-primary"><h4><a class="text-decoration-none" href = "{% url 'library:detail' book.id %}">{{book.title}}</a></h4>
+            {% if book.author_name == null %}
+                <p>Author: {{book.author_surname}}</p>
+                <p> Publisher: {{book.publisher}}</p>
+            {% else %}
+                <p>Author: {{book.author_name}} {{book.author_surname}}</p>
+                <p> Publisher: {{book.publisher}}</p>
+            {% endif %}
+            </li>
+        </div>
+    {% endfor %}
+</ul>
+<form method = "GET" action = "{% url 'library:ListPage' %}">
+    <div class="container-fluid p-2 text-bg-secondary">
+        <input type = "number" name="p" placeholder="5" min="1" value="{{pagination}}">
+        <label for="p">Items in a page</label>
+    </div>
+
+</form>
+<div class="pagination">
+    <li class="step-links">
+        {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?q={{query}}&p={{pagination}}&page=1">&laquo; first</a></li>
+            <li class="page-item"><a class="page-link" href="?q={{query}}&p={{pagination}}&page={{ page_obj.previous_page_number }}">previous</a></li>
+        {% endif %}
+
+        <span class="current page-link active">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?q={{query}}&p={{pagination}}&page={{ page_obj.next_page_number }}">next</a></li>
+            <li class="page-item"><a class="page-link" href="?q={{query}}&p={{pagination}}&page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
