@@ -6,6 +6,7 @@ from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 from .models import Book
 from django.contrib.auth.models import User
+from django import forms
 from django.db.models import Q
 
 
@@ -13,10 +14,11 @@ def home(request):
     return render(request, "library/index.html")
 
 class SignUpPage(CreateView):
+    template_name = 'library/user_form.html'
     model = User
     fields = [
-        "username",
         "email",
+        "username",
         "password",
     ]
 
