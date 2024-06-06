@@ -18,6 +18,7 @@ class SignUpPage(CreateView):
     template_name = 'library/user_form.html'
     model = User
     form_class = CustomUserCreationForm
+    success_url = 'library/user_creation_confirm.html'
 
 class ListPage(generic.ListView):
     template_name = "library/booklist.html"
