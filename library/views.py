@@ -19,6 +19,15 @@ class SignUpPage(CreateView):
     model = User
     form_class = CustomUserCreationForm
     success_url = reverse_lazy("library:UserCreateConfirm")
+    def form_valid(self, form):
+        username = form.cleaned_data['username']
+        email = form.cleaned_data['email']
+        if User.objects.filter(username=username).exists():
+            form.add_error('username', f'Username "{username}" is already in use.')
+            return self.form_invalid(form)
+        elif User.objects.filter(email=email).exists():
+            form.add_error('email', f'Email "{email}" is already in use.')
+            return self.form_invalid(form)
 
 def user_confirm(request):
     return render(request,'library/user_creation_confirm.html')
