@@ -6,12 +6,6 @@ My Library
 
 {% block content %}
 
-{% if not request.user.is_authenticated %}
-<div class="p-1 float-end">
-    <a class="btn btn-success" href = "{% url 'library:SignUp' %}" role="button">Sign Up</a>
-</div>
-{% endif %}
-
-<h2 class="container-fluid p-5 my-5 border text-center text-bg-success">Your online LIBRARY</h2>
+<h2 class="container-fluid p-5 my-2 border text-center text-bg-success">Your online LIBRARY</h2>
 
 {% endblock %}
