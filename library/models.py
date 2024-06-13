@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.conf import settings
 
 
 GENRE_CHOICES = (
@@ -20,7 +21,7 @@ GENRE_CHOICES = (
 
 class Book(models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     author_name = models.CharField('Author Name',max_length=50, null = True, blank=True)
     author_surname = models.CharField('Author Surname',max_length=50)
