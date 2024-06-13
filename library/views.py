@@ -5,9 +5,8 @@ from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 from .models import Book
-from .forms import CustomUserCreationForm, UserLoginForm
+from .forms import CustomUserCreationForm
 from django.contrib.auth.models import User
-from django.contrib.auth.views import LoginView, LogoutView
 from django import forms
 from django.db.models import Q
 
@@ -29,20 +28,6 @@ class SignUpPage(CreateView):
         elif User.objects.filter(email=email).exists():
             form.add_error('email', f'Email "{email}" is already in use.')
             return self.form_invalid(form)
-        
-class LoginPage(LoginView):
-    model = User
-    form_class = UserLoginForm
-    template_name = 'library/login_form.html'
-    next_page = 'library:home'
-
-class ConfirmLogout(generic.TemplateView):
-    template_name = 'library/logout_form.html'
-
-class LogoutPage(LogoutView):
-    model = User
-    template_name = 'library/logout_form.html'
-    # next_page = 'library:home'
 
 def user_confirm(request):
     return render(request,'library/user_creation_confirm.html')

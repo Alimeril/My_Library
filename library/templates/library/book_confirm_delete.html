@@ -7,7 +7,7 @@ Delete Book
 {% block content %}
 
 <div>
-    <form method = 'POST' action = "{% url 'library:DeletePage' %}">
+    <form method = 'POST' action = "">
         {% csrf_token %}
         <h3 class="container p-5 my-2 text-bg-warning text-center">Are you sure you want to delete "{{ object }}"</h3>
         {{form}}

@@ -5,12 +5,9 @@ My Library
 {% endblock %}
 
 {% block content %}
-
-{% if not request.user.is_authenticated %}
 <div class="p-1 float-end">
     <a class="btn btn-success" href = "{% url 'library:SignUp' %}" role="button">Sign Up</a>
 </div>
-{% endif %}
 
 <h2 class="container-fluid p-5 my-5 border text-center text-bg-success">Checkout our <a class="text-white" href="{% url 'library:ListPage' %}">BOOKS</a>.</h2>
 
