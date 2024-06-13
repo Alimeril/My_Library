@@ -13,10 +13,18 @@
       <ul class="navbar-nav nav-pills">
         <li class="nav-item"><a class="nav-link" href = "{% url 'library:home' %}">Home</a></li>
         <li class="nav-item"><a class="nav-link" href = "{% url 'library:ListPage' %}">Book List</a></li>
-        <li class="nav-item"><a class="nav-link" href = "{% url 'library:AddPage' %}" role="button">Add Book</a></li>
+        <li class="nav-item"><a class="nav-link" href = "{% url 'library:AddPage' %}">Add Book</a></li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href = "{% url 'library:ConfirmLogout' %}">Logout</a></li>
+        {% else %}
+        <li class="nav-item"><a class="nav-link" href = "{% url 'library:Login' %}">Login</a></li>
+        {% endif %}
       </ul>
     </div>
   </nav>
+  {% if request.user.is_authenticated %}
+  <p>{{request.user.username}}</p>
+  {% endif %}
 {% block content %}
 {% endblock %}
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
