@@ -57,13 +57,15 @@ class ListPage(generic.ListView):
         p = int(self.request.GET.get('p')) if self.request.GET.get('p') != None else self.paginate_by
         self.paginate_by = p
         # self.set_pagination()
-        current_user = self.request.user
         book_list = Book.objects.filter(
-            Q(user = current_user) |
-            Q(title__icontains = q) |
-            Q(author_surname__icontains = q) |
-            Q(genre__icontains = q) |
-            Q(publisher__icontains = q)
+            Q(user = self.request.user) & 
+            (
+                Q(title__icontains = q) |
+                Q(author_surname__icontains = q) |
+                Q(genre__icontains = q) |
+                Q(publisher__icontains = q)            
+            )
+            
         ).values()
         return book_list
     
@@ -90,6 +92,9 @@ class AddPage(CreateView):
         "genre",
         "borrowed",
     ]
+    def form_valid(self, form: forms.BaseModelForm):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class EditPage(UpdateView):
     model = Book
