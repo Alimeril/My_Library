@@ -90,6 +90,7 @@ class AddPage(CreateView):
         "author_surname",
         "publisher",
         "genre",
+        "description",
         "borrowed",
     ]
     def form_valid(self, form: forms.BaseModelForm):

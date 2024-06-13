@@ -31,6 +31,7 @@ class Book(models.Model):
         choices = GENRE_CHOICES,
         default = 'Literature'
     )
+    description = models.TextField(max_length=500, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     borrowed = models.BooleanField(default=False)
 
