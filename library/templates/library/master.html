@@ -23,7 +23,7 @@
     </div>
   </nav>
   {% if request.user.is_authenticated %}
-  <p>{{request.user.username}}</p>
+  <p class = "float-end">{{request.user.username}}</p>
   {% endif %}
 {% block content %}
 {% endblock %}
