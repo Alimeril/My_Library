@@ -12,7 +12,9 @@
     <div class="container-fluid justify-content-center">
       <ul class="navbar-nav nav-pills">
         <li class="nav-item"><a class="nav-link" href = "{% url 'library:home' %}">Home</a></li>
+        {% if request.user.is_authenticated %}
         <li class="nav-item"><a class="nav-link" href = "{% url 'library:ListPage' %}">Book List</a></li>
+        {% endif %}
         <li class="nav-item"><a class="nav-link" href = "{% url 'library:AddPage' %}">Add Book</a></li>
         {% if request.user.is_authenticated %}
         <li class="nav-item"><a class="nav-link" href = "{% url 'library:ConfirmLogout' %}">Logout</a></li>

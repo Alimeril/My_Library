@@ -6,6 +6,8 @@ Add Books
 
 {% block content %}
 
+{% if request.user.is_authenticated %}
+
 <div class="container pt-5">
     <form method = 'POST' action = "">
         {% csrf_token %}
@@ -16,5 +18,9 @@ Add Books
         </div>
     </form>
 </div>
+
+{% else %}
+<h3 class="container p-5 my-2 text-bg-warning text-center">Please login to add books to your library</h3>
+{% endif %}
 
 {% endblock %}
