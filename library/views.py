@@ -50,14 +50,16 @@ def user_confirm(request):
 class ListPage(generic.ListView):
     template_name = "library/booklist.html"
     context_object_name = 'book_list'
-    paginate_by = 5
+    paginate_by = 10
 
     def get_queryset(self):
         q = self.request.GET.get('q') if self.request.GET.get('q') != None else ""
         p = int(self.request.GET.get('p')) if self.request.GET.get('p') != None else self.paginate_by
         self.paginate_by = p
         # self.set_pagination()
+        current_user = self.request.user
         book_list = Book.objects.filter(
+            Q(user = current_user) |
             Q(title__icontains = q) |
             Q(author_surname__icontains = q) |
             Q(genre__icontains = q) |
