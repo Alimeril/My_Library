@@ -106,6 +106,7 @@ class EditPage(UpdateView):
         "author_surname",
         "publisher",
         "genre",
+        "description",
         "borrowed",
     ]
 
