@@ -64,7 +64,8 @@ class ListPage(LoginRequiredMixin, generic.ListView):
                 Q(title__icontains = q) |
                 Q(author_surname__icontains = q) |
                 Q(genre__icontains = q) |
-                Q(publisher__icontains = q)            
+                Q(publisher__icontains = q) |
+                Q(description__icontains = q)        
             )
             
         ).values()
