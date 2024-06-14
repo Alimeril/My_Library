@@ -48,7 +48,7 @@ class LogoutPage(LogoutView):
 def user_confirm(request):
     return render(request,'library/user_creation_confirm.html')
 
-class ListPage(generic.ListView):
+class ListPage(LoginRequiredMixin, generic.ListView):
     template_name = "library/booklist.html"
     context_object_name = 'book_list'
     paginate_by = 10
