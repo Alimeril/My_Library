@@ -3,7 +3,7 @@ from . import views
 
 app_name = 'library'
 urlpatterns = [
-    path('',views.home, name = 'home'),
+    path('',views.Home.as_view(), name = 'home'),
     path('SignUp/', views.SignUpPage.as_view(), name = 'SignUp'),
     path('Login/', views.LoginPage.as_view(), name = 'Login'),
     path('ConfirmLogout/',views.ConfirmLogout.as_view(), name='ConfirmLogout'),

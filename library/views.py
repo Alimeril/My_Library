@@ -8,12 +8,13 @@ from .models import Book
 from .forms import CustomUserCreationForm, UserLoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django import forms
 from django.db.models import Q
 
 
-def home(request):
-    return render(request, "library/index.html")
+class Home(generic.TemplateView):
+    template_name = "library/index.html"
 
 class SignUpPage(CreateView):
     template_name = 'library/user_form.html'
